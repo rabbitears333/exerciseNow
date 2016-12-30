@@ -22,4 +22,20 @@ RSpec.feature "Creating exercises page" do
         expect(current_path).to eq(user_exercise_path(@john, exercise))
         expect(exercise.user_id).to eq(@john.id)
     end
+    
+    scenario "with invalid credentials" do
+        visit "/"
+        click_link "My lounge"
+        click_link "New Workout"
+        expect(page).to have_link("back")
+        fill_in "duration", with: ""
+        fill_in "workoutdetails", with: ""
+        fill_in "Activity date", with:""
+        click_button "Create exercise"
+        
+        expect(page).to have_content("exercise has not been created")
+        expect(page).to have_content("duration has not been created")
+        expect(page).to have_content("workout details has not been created")
+        expect(page).to have_content("activity has not been created")
+    end
 end
