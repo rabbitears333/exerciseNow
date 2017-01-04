@@ -19,6 +19,22 @@ class ExercisesController < ApplicationController
         render :new
         end
     end
+    
+    def edit
+        @exercise = current_user.exercises.find params[:id]
+        
+    end
+    
+    def update
+        @exercise = current_user.exercises.find params[:id]
+        if @exercise.update(exercise_params)
+            flash[:notice] = "exercise has been updated"
+            redirect_to [current_user, @exercise]
+        else
+        flash.now[:alert] = "exercise has not been updated"
+        render :edit
+        end
+    end
     private
     def exercise_params
         params.require(:exercise).permit(:duration_in_min, :workout, :workout_date, :user_id)
