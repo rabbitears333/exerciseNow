@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Listing exercises" do
+RSpec.feature "Showing Friends" do
     before do
         @john = User.create!(email: "john@example.com", 
             first_name: "john", last_name: "Doe", password: "password")
