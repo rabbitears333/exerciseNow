@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   
   resources :friendships, only: [:show, :create, :destroy]
   
-  
+  resources :messages, only: [:create]
 end
